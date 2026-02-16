@@ -134,6 +134,7 @@ ARG OAUTH_COMMIT
 ARG UNIVERSALLANGUAGESELECTOR_COMMIT
 ARG WIKIBASECIRRUSSEARCH_COMMIT
 ARG WIKIBASEMANIFEST_COMMIT
+ARG WIKIBASEQUALITYCONSTRAINTS_COMMIT
 
 # third-party extensions
 ARG WIKIBASEEDTF_COMMIT
@@ -177,7 +178,6 @@ RUN set -x; \
     rm -rf "extensions/WikibaseLocalMedia/.git*" && \
     \
     git clone "https://github.com/colinrobinsonuib/WikibaseFacetedSearch-facetapi.git" "extensions/WikibaseFacetedSearch" && \
-    git -C "extensions/WikibaseFacetedSearch" checkout "${WIKIBASELOCALMEDIA_COMMIT}" && \
     rm -rf "extensions/WikibaseFacetedSearch/.git*" && \
     \
     rm -rf vendor && \
