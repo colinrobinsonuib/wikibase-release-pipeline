@@ -123,7 +123,7 @@ RUN apt-get update; \
     rm -rf /var/lib/apt/lists/*
 USER nobody
 
-ARG WMF_EXTENSIONS="Wikibase,Babel,cldr,CirrusSearch,Elastica,EntitySchema,OAuth,UniversalLanguageSelector,WikibaseCirrusSearch,WikibaseManifest"
+ARG WMF_EXTENSIONS="Wikibase,Babel,cldr,CirrusSearch,Elastica,EntitySchema,OAuth,UniversalLanguageSelector,WikibaseCirrusSearch,WikibaseManifest,WikibaseQualityConstraints"
 ARG WIKIBASE_COMMIT
 ARG BABEL_COMMIT
 ARG CLDR_COMMIT
@@ -175,6 +175,10 @@ RUN set -x; \
     git clone "https://github.com/ProfessionalWiki/WikibaseLocalMedia.git" "extensions/WikibaseLocalMedia" && \
     git -C "extensions/WikibaseLocalMedia" checkout "${WIKIBASELOCALMEDIA_COMMIT}" && \
     rm -rf "extensions/WikibaseLocalMedia/.git*" && \
+    \
+    git clone "https://github.com/colinrobinsonuib/WikibaseFacetedSearch-facetapi.git" "extensions/WikibaseFacetedSearch" && \
+    git -C "extensions/WikibaseFacetedSearch" checkout "${WIKIBASELOCALMEDIA_COMMIT}" && \
+    rm -rf "extensions/WikibaseFacetedSearch/.git*" && \
     \
     rm -rf vendor && \
     rm -rf composer.lock && \
