@@ -13,6 +13,7 @@ SHELL ["/bin/bash", "-exu", "-c"]
 RUN apt-get update; \
     apt-get install -y --no-install-recommends \
         git \
+        nano \
         gettext-base \
         librsvg2-bin \
         imagemagick \
@@ -178,6 +179,7 @@ RUN set -x; \
     rm -rf "extensions/WikibaseLocalMedia/.git*" && \
     \
     git clone "https://github.com/colinrobinsonuib/WikibaseFacetedSearch-facetapi.git" "extensions/WikibaseFacetedSearch" && \
+    git -C "extensions/WikibaseLocalMedia" checkout "${WIKIBASEFACETEDSEARCH_COMMIT}" && \
     rm -rf "extensions/WikibaseFacetedSearch/.git*" && \
     \
     rm -rf vendor && \
