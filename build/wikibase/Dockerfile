@@ -140,6 +140,7 @@ ARG WIKIBASEQUALITYCONSTRAINTS_COMMIT
 # third-party extensions
 ARG WIKIBASEEDTF_COMMIT
 ARG WIKIBASELOCALMEDIA_COMMIT
+ARG WIKIBASEFACETEDSEARCH_COMMIT
 
 # WORKAROUND for https://phabricator.wikimedia.org/T372458
 # Take wikibase submodules from github as phabricator rate limits us
@@ -179,7 +180,7 @@ RUN set -x; \
     rm -rf "extensions/WikibaseLocalMedia/.git*" && \
     \
     git clone "https://github.com/colinrobinsonuib/WikibaseFacetedSearch-facetapi.git" "extensions/WikibaseFacetedSearch" && \
-    git -C "extensions/WikibaseLocalMedia" checkout "${WIKIBASEFACETEDSEARCH_COMMIT}" && \
+    git -C "extensions/WikibaseFacetedSearch" checkout "${WIKIBASEFACETEDSEARCH_COMMIT}" && \
     rm -rf "extensions/WikibaseFacetedSearch/.git*" && \
     \
     rm -rf vendor && \
