@@ -138,6 +138,7 @@ ARG WIKIBASEMANIFEST_COMMIT
 ARG WIKIBASEQUALITYCONSTRAINTS_COMMIT
 
 # third-party extensions
+ARG CRAWLERPROTECTION_COMMIT
 ARG WIKIBASEEDTF_COMMIT
 ARG WIKIBASELOCALMEDIA_COMMIT
 ARG WIKIBASEFACETEDSEARCH_COMMIT
@@ -178,6 +179,10 @@ RUN set -x; \
     git clone "https://github.com/ProfessionalWiki/WikibaseLocalMedia.git" "extensions/WikibaseLocalMedia" && \
     git -C "extensions/WikibaseLocalMedia" checkout "${WIKIBASELOCALMEDIA_COMMIT}" && \
     rm -rf "extensions/WikibaseLocalMedia/.git*" && \
+    \
+    git clone "https://github.com/mywikis/CrawlerProtection.git" "extensions/CrawlerProtection" && \
+    git -C "extensions/CrawlerProtection" checkout "${CRAWLERPROTECTION_COMMIT}" && \
+    rm -rf "extensions/CrawlerProtection/.git*" && \
     \
     git clone "https://github.com/colinrobinsonuib/WikibaseFacetedSearch-facetapi.git" "extensions/WikibaseFacetedSearch" && \
     git -C "extensions/WikibaseFacetedSearch" checkout "${WIKIBASEFACETEDSEARCH_COMMIT}" && \
