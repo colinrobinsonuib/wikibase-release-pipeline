@@ -1,11 +1,12 @@
 # Build configuration
 ARG PHP_IMAGE_URL
 ARG COMPOSER_IMAGE_URL
+ARG APPLICATION_IMAGE_URL=colinuib/wikibase@sha256:371896aa6079e9a6ff32495dbd01be68934975d954409a25e2423da0672fa0ca
 
 # ###########################################################################
 # Based on https://github.com/wikimedia/mediawiki-docker/blob/1161796f04d6a6bcbec9fb4c67a8ce7248392403/1.41/apache/Dockerfile
 # hadolint ignore=DL3006
-FROM ${PHP_IMAGE_URL} AS mediawiki
+FROM ${PHP_IMAGE_URL} AS runtime
 
 SHELL ["/bin/bash", "-exu", "-c"]
 
@@ -95,6 +96,34 @@ RUN { \
     echo 'opcache.max_accelerated_files=4000'; \
     echo 'opcache.revalidate_freq=60'; \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini
+
+# Reuse the deployed application unchanged for PHP-only security rebuilds.
+# This avoids re-resolving Composer dependencies or changing extension files.
+FROM ${APPLICATION_IMAGE_URL} AS application
+
+FROM runtime AS php-security
+ARG APPLICATION_IMAGE_URL
+ARG GIT_CURRENT_REVISION
+LABEL org.opencontainers.image.source="https://github.com/colinrobinsonuib/wikibase-release-pipeline" \
+    org.opencontainers.image.revision="${GIT_CURRENT_REVISION}" \
+    org.opencontainers.image.base.name="${APPLICATION_IMAGE_URL}"
+COPY --from=application /var/www/html /var/www/html
+COPY --from=application /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
+COPY --from=application /templates/ /templates/
+COPY --from=application /var/log/mediawiki/ /var/log/mediawiki/
+COPY --from=application /entrypoint.sh /callback.sh /jobrunner-entrypoint.sh /default-extra-install.sh /
+# Defense in depth for the session upload-progress follow-up advisory.
+RUN printf 'session.upload_progress.enabled=0\n' > /usr/local/etc/php/conf.d/zz-php-security.ini; \
+    php -r 'exit(version_compare(PHP_VERSION, "8.3.36", ">=") ? 0 : 1);'
+WORKDIR /var/www/html
+ENV DB_NAME=my_wiki \
+    MW_WG_SITENAME=wikibase \
+    MW_WG_LANGUAGE_CODE=en \
+    ELASTICSEARCH_PORT=9200
+ENTRYPOINT ["/bin/bash"]
+CMD ["/entrypoint.sh"]
+
+FROM runtime AS mediawiki
 
 # MediaWiki setup
 WORKDIR /var/www/html
