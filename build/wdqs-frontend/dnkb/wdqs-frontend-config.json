@@ -1,0 +1,43 @@
+{
+  "api": {
+    "sparql": {
+      "uri": "https://query.wbs.cdn.uib.no/sparql"
+    },
+    "wikibase": {
+      "uri": "https://wbs.cdn.uib.no/w/api.php"
+    },
+    "examples": {
+      "server": "https://wbs.cdn.uib.no/",
+      "apiPath": "w/api.php",
+      "pageTitle": "Project:SPARQL/examples",
+      "pagePathElement": "wiki/"
+    }
+  },
+  "brand": {
+    "title": "DNKB Query Service",
+    "logo": "https://dnkb.cdn.uib.no/CDN-icon_Color.svg",
+    "favicon": "https://dnkb.cdn.uib.no/favicon.ico",
+    "copyrightUrl": "",
+    "index": "./index.html"
+  },
+  "prefixes": {
+    "wd": "https://wbs.cdn.uib.no/entity/",
+    "wdt": "https://wbs.cdn.uib.no/prop/direct/",
+    "p": "https://wbs.cdn.uib.no/prop/",
+    "ps": "https://wbs.cdn.uib.no/prop/statement/",
+    "pq": "https://wbs.cdn.uib.no/prop/qualifier/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "wikibase": "http://wikiba.se/ontology#",
+    "bd": "http://www.bigdata.com/rdf#"
+  },
+  "bannerName": "dnkb-help",
+  "banners": {
+    "dnkb-help": {
+      "default": "Query DNKB with local prefixes and examples. <a href=\"https://dnkb.cdn.uib.no/docs/querying\">Explore DNKB with AI and SPARQL</a>.",
+      "storageKey": "dnkb-query-guide-v1",
+      "i18nKey": "dnkb-query-guide"
+    }
+  }
+}

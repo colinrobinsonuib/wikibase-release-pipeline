@@ -1,0 +1,13 @@
+# Digital Narrative Knowledge Base (DNKB)
+
+> Research archive of digital narrative and electronic literature. Structured data is publicly queryable through a local Wikibase and SPARQL service.
+
+SPARQL endpoint: https://query.wbs.cdn.uib.no/sparql
+Use explicit local prefixes: wd: <https://wbs.cdn.uib.no/entity/> and wdt: <https://wbs.cdn.uib.no/prop/direct/>. Local IDs are not Wikidata IDs. Resolve unfamiliar IDs and state coverage limits. Missing data does not mean absence. Do not invent query results.
+
+## Data access
+
+- [Query reference for agents](https://dnkb.cdn.uib.no/docs/querying.md): Endpoint usage, prefixes, ontology, local property/item IDs, tested examples and interpretation rules.
+- [Explore DNKB with AI](https://dnkb.cdn.uib.no/docs/querying): Human guide and runnable examples.
+- [Structured query reference](https://dnkb.cdn.uib.no/docs/querying.json): The same definitions and queries as JSON.
+- [Query editor](https://query.wbs.cdn.uib.no/): Run read-only SPARQL queries.
