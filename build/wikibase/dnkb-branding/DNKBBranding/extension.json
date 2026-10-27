@@ -1,0 +1,11 @@
+{
+  "name": "DNKBBranding",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "AutoloadClasses": { "DNKBBrandingHooks": "Hooks.php" },
+  "Hooks": { "BeforePageDisplay": "DNKBBrandingHooks::onBeforePageDisplay" },
+  "ResourceModules": {
+    "ext.dnkb.login": { "styles": ["login.css"], "targets": ["desktop", "mobile"] }
+  },
+  "ResourceFileModulePaths": { "localBasePath": "", "remoteExtPath": "DNKBBranding" }
+}

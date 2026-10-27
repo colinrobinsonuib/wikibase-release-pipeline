@@ -1,0 +1,78 @@
+@import "../../app/node_modules/tailwindcss/theme.css";
+@tailwind utilities;
+@config "../../app/tailwind.config.ts";
+
+/* The ResourceLoader module is only loaded for Special:UserLogin. */
+.page-Special_UserLogin .vector-page-toolbar,
+.page-Special_UserLogin .vector-column-end,
+.page-Special_UserLogin #vector-main-menu-dropdown,
+.page-Special_UserLogin .vector-header-end,
+.page-Special_UserLogin .mw-footer-container {
+    @apply hidden;
+}
+.page-Special_UserLogin,
+.page-Special_UserLogin .mw-page-container {
+    @apply bg-background-light;
+}
+.page-Special_UserLogin .mw-body {
+    @apply mx-auto my-8 w-full max-w-md rounded-xl border border-primary/15 bg-surface-light p-6 shadow-sm sm:my-12 sm:p-8;
+    box-sizing: border-box;
+}
+.page-Special_UserLogin #firstHeading {
+    @apply border-0 text-center font-body text-2xl font-bold text-brand-dark;
+}
+.page-Special_UserLogin .vector-page-titlebar::after {
+    @apply hidden;
+}
+.page-Special_UserLogin .mw-ui-container,
+.page-Special_UserLogin #userloginForm,
+.page-Special_UserLogin #userloginForm form {
+    @apply float-none w-full max-w-none;
+}
+@media screen and (prefers-color-scheme: dark) {
+    html.skin-theme-clientpref-os .page-Special_UserLogin,
+    html.skin-theme-clientpref-os .page-Special_UserLogin .mw-page-container {
+        @apply bg-background-dark;
+    }
+    html.skin-theme-clientpref-os .page-Special_UserLogin .mw-body {
+        @apply border-brand-teal/25 bg-surface-dark;
+    }
+    html.skin-theme-clientpref-os .page-Special_UserLogin #firstHeading,
+    html.skin-theme-clientpref-os .page-Special_UserLogin .dnkb-login-note {
+        @apply text-background-light;
+    }
+    html.skin-theme-clientpref-os .page-Special_UserLogin .dnkb-login-note {
+        @apply bg-background-dark;
+    }
+    html.skin-theme-clientpref-os .page-Special_UserLogin .dnkb-login-note a {
+        @apply text-brand-lime;
+    }
+}
+.page-Special_UserLogin #wpLoginAttempt {
+    @apply w-full border-primary bg-primary font-semibold text-surface-light hover:border-brand-purple hover:bg-brand-purple;
+}
+.page-Special_UserLogin .dnkb-login-note {
+    @apply mt-5 rounded-lg bg-background-light p-3 text-sm text-brand-dark;
+}
+.page-Special_UserLogin .dnkb-login-note a {
+    @apply font-semibold text-primary underline;
+}
+@media screen {
+    html.skin-theme-clientpref-night .page-Special_UserLogin,
+    html.skin-theme-clientpref-night .page-Special_UserLogin .mw-page-container {
+        @apply bg-background-dark;
+    }
+    html.skin-theme-clientpref-night .page-Special_UserLogin .mw-body {
+        @apply border-brand-teal/25 bg-surface-dark;
+    }
+    html.skin-theme-clientpref-night .page-Special_UserLogin #firstHeading,
+    html.skin-theme-clientpref-night .page-Special_UserLogin .dnkb-login-note {
+        @apply text-background-light;
+    }
+    html.skin-theme-clientpref-night .page-Special_UserLogin .dnkb-login-note {
+        @apply bg-background-dark;
+    }
+    html.skin-theme-clientpref-night .page-Special_UserLogin .dnkb-login-note a {
+        @apply text-brand-lime;
+    }
+}

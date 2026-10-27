@@ -259,6 +259,8 @@ COPY callback.sh /callback.sh
 COPY jobrunner-entrypoint.sh /jobrunner-entrypoint.sh
 COPY htaccess /var/www/html/.htaccess
 COPY LocalSettings.d LocalSettings.d
+COPY dnkb-branding/DNKBBranding /var/www/html/extensions/DNKBBranding
+COPY dnkb-branding/99-DNKBBranding.php /var/www/html/LocalSettings.d/99-DNKBBranding.php
 COPY default-extra-install.sh /default-extra-install.sh
 COPY oauth.ini /templates/oauth.ini
 COPY LocalSettings.wbs.php /templates/LocalSettings.wbs.php
