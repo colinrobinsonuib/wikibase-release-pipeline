@@ -9,7 +9,7 @@ The login hook adds styles and an invitation/request-access note only on Special
 From this directory, build the production overlay:
 
 ```sh
-docker build --platform linux/amd64 -t colinuib/wikibase:5.0.1-dnkb-resilience-r1 .
+docker build --platform linux/amd64 --build-arg VCS_REF="$(git rev-parse HEAD)" -t colinuib/wikibase:5.0.1-dnkb-resilience-r1 .
 docker run --rm --entrypoint php -v "$PWD/test-hooks.php:/tmp/test-hooks.php:ro" colinuib/wikibase:5.0.1-dnkb-resilience-r1 /tmp/test-hooks.php
 python test-resilience.py colinuib/wikibase:5.0.1-dnkb-resilience-r1
 docker push colinuib/wikibase:5.0.1-dnkb-resilience-r1
@@ -43,3 +43,5 @@ responses, JSON-validating readiness, regression tests, and deployment limits.
 The hardened image and the read-only `/run/dnkb-settings` mount must roll out and
 roll back together through committed sigma2 manifests. Image source and tests
 stay here; rollout notes stay with those deployment manifests.
+
+Before publishing, commit and push all image source to GitHub and verify the remote revision. Build from that clean committed tree, supplying VCS_REF as shown above. Push the exact image digest and deployment manifest commit to GitHub before applying anything to a server. Never deploy local-only or uncommitted changes.
